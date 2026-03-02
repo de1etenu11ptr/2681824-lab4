@@ -21,7 +21,6 @@ async function search_name() {
 		if (response.status != 200) return;
 		update_display();
 		const data = await response.json();
-		console.debug(data);
 		update_display(data[0]);
 	} catch (err) {
 		console.error("Failed to search country name...", err);
