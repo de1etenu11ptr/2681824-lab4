@@ -19,15 +19,18 @@ async function search_name() {
 	try {
 		update_display();
 		const response = await fetch(`${BASE_URL}/${countryname}?fullText=true`)
-		if (response.status != 200) return;
+		if (response.status != 200) {
+			document.body.querySelector("section#country-info").innerHTML = "<p>Country Not Found</p>";
+			return;
+		}
 		const data = await response.json();
 		if (data.length == 0) {
-			document.body.querySelector("section#country-info").innerHTML = "Country Not Found";
+			document.body.querySelector("section#country-info").innerHTML = "<p>Country Not Found</p>";
 		} else {
 			update_display(data[0]);
 		}
 	} catch (err) {
-		document.body.querySelector("section#country-info").innerHTML = "Country Not Found";
+		document.body.querySelector("section#country-info").innerHTML = "<p>Country Not Found</p>";
 		console.error("Failed to search country name...", err);
 	} finally {
 		hide_unhide(spinner);
