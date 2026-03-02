@@ -30,7 +30,7 @@ async function search_name() {
 }
 
 async function get_borders(country_borders) {
-	if (!country_borders) return;
+	if (!country_borders) return "NO BORDERING COUNTRIES";
 	var str = "";
 	for (border of country_borders) {
 		const response = await fetch(`${BASE_BORDER_URL}/${border}`)

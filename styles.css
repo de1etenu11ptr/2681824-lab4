@@ -48,6 +48,7 @@ main {
 	display: flex;
 	flex-direction: horizontal;
 	align-items: center;
+	text-align: center;
 	justify-content: space-evenly;
 }
 
