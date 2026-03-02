@@ -1,3 +1,24 @@
+header {
+	text-align: center;
+	width: 100%;
+}
+
+main {
+	align-items: center;
+	justify-content: space-evenly;
+	width: 100%;
+}
+
+.search-container {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.search-container button {
+	margin-left: 1em;
+}
+
 .spinner {
 	margin: 1em;
 	border: 0.4em ridge #e00;
@@ -14,7 +35,12 @@
 }
 
 .country-card {
-	background: #333;
+	padding: 1em;
+	border: 0.5em ridge #999;
+	background: #bbb;
+	text-align: center;
+	align-content: center;
+
 }
 
 .border-grid {
@@ -22,9 +48,14 @@
 	flex-direction: horizontal;
 	align-items: center;
 	justify-content: space-evenly;
-	width: 100%;
 }
 
+.border-grid div {
+	height: 100%;
+	padding: 1em;
+	border: 0.5em ridge #999;
+	border-radius: 20%;
+}
 
 .error {
 	color: #e55;

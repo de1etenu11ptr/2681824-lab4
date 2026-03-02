@@ -17,7 +17,7 @@ async function search_name() {
 	if (!countryname) return;
 	countryname = countryname.value.trim();
 	try {
-		const response = await fetch(`${BASE_URL}/${countryname}`)
+		const response = await fetch(`${BASE_URL}/${countryname}?fullText=true`)
 		if (response.status != 200) return;
 		update_display();
 		const data = await response.json();
@@ -30,6 +30,7 @@ async function search_name() {
 }
 
 async function get_borders(country_borders) {
+	if (!country_borders) return;
 	var str = "";
 	for (border of country_borders) {
 		const response = await fetch(`${BASE_BORDER_URL}/${border}`)
@@ -48,7 +49,9 @@ async function get_borders(country_borders) {
 function update_display(data = undefined) {
 	if (!data) {
 		document.body.querySelector("section#country-info").innerHTML = "";
+		document.body.querySelector("section#bordering-countries").innerHTML = "";
 	} else {
+		console.debug(data);
 		get_borders(data.borders).then(borders => {
 			document.body.querySelector("section#country-info").innerHTML = `
 				<h2>${data.name.common}</h2>
@@ -57,6 +60,7 @@ function update_display(data = undefined) {
 				<p><strong>Region:</strong> ${data.region}</p>
 				<img src="${data.flags.svg}" alt="${data.name.common} flag">
 			`
+			if (!borders) return;
 			document.body.querySelector("section#bordering-countries").innerHTML = borders;
 		})
 	}
