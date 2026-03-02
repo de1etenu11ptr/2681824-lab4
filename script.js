@@ -17,12 +17,17 @@ async function search_name() {
 	if (!countryname) return;
 	countryname = countryname.value.trim();
 	try {
+		update_display();
 		const response = await fetch(`${BASE_URL}/${countryname}?fullText=true`)
 		if (response.status != 200) return;
-		update_display();
 		const data = await response.json();
-		update_display(data[0]);
+		if (data.length == 0) {
+			document.body.querySelector("section#country-info").innerHTML = "Country Not Found";
+		} else {
+			update_display(data[0]);
+		}
 	} catch (err) {
+		document.body.querySelector("section#country-info").innerHTML = "Country Not Found";
 		console.error("Failed to search country name...", err);
 	} finally {
 		hide_unhide(spinner);
